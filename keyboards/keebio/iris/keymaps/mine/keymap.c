@@ -16,17 +16,22 @@ extern keymap_config_t keymap_config;
 #define _MAIN 0
 #define _SYMBOL 1
 #define _NAV 2
-#define _GAME 3
-#define _LEFT 4
+#define _MEDIA 3
+#define _GAME 4
+#define _NAV_GAME 5
+#define _ARROW_GAME 6
 
 // Keycode shorthands
 #define KC___   KC_TRNS
 #define KC____  KC_TRNS
-#define KC_MAIN  TO(_MAIN)
+#define KC_MAIN TO(_MAIN)
 #define KC_SYM  MO(_SYMBOL)
 #define KC_NAV  MO(_NAV)
+#define KC_MEDI MO(_MEDIA)
 #define KC_TNAV LT(_NAV, KC_TAB)
 #define KC_GAM  TO(_GAME)
+#define KC_NGAM TO(_NAV_GAME)
+#define KC_AGAM TO(_ARROW_GAME)
 
 // Text editor shortcuts for NAV
 #define KC_AL   LALT(KC_LEFT)
@@ -87,8 +92,10 @@ enum {
     MAIN = 0,
     SYMBOL,
     NAV, // Navigation layer and media controls
+    MEDIA, // Layer for media keys and kb controls
     GAME, // Gaming layer with WASD in usable position
-    LEFT, // Left-hand writing
+    NAV_GAME, // Gaming layer with nav cluster
+    ARROW_GAME, // Gaming layer with arrow keys
     SFT_LCK // tapdance declaration
 };
 
@@ -127,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|    | !  | #  | {  | }  | ~  |    |    |    | &  | [  | ]  | %  | ^  |    |
       __ ,EXCL,HASH,CBRL,CBRR,TILD, __ ,      __ ,AMPR,SBRL,CBRL,PERC, HAT, __ ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                        __ , __ , __ ,          __ , __ , __
+                        __ ,MEDI, __ ,          __ , __ , __
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -142,6 +149,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
       __ , __ , __ , __ , __ , __ , __        __ ,CLFT,CDWN, CUP,CRGT, __ , __ ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
+                        __ , __ , __ ,          __ ,MEDI, __
+  //                  `----+----+----'        `----+----+----'
+  ),
+
+  // Layer for media keys and keyboard controls
+  // Get here by holding both NAV and SYM
+    [_MEDIA] = KC_KEYMAP(
+  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
+      __ , F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 , F10, F11,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+      __ , __ , __ , __ , __ ,BRIU,               VOLU, __ ,MSTP, __ , __ , F12,
+  //|----|----+----+----+----+----+              |----+----+----+----+----+----|
+    RESET, __ , __ , __ , __ ,BRID,               VOLD,MPRV,MPLY,MNXT, __ , __ ,
+  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
+      __ , __ , __ , __ , __ , __ , __        __ , __ , __ , __ , __ , __ , __ ,
+  //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                         __ , __ , __ ,          __ , __ , __
   //                  `----+----+----'        `----+----+----'
   ),
@@ -153,9 +176,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
       TAB, ESC, Q  , W  , E  , R  ,                Y  , U  , I  , O  , P  , __ ,
   //|----|----+----+----+----+----+              |----+----+----+----+----+----|
-      T  ,LSFT, A  , S  , D  , F  ,                H  , J  , K  , L  , T  , __ ,
+      T  ,LSFT, A  , S  , D  , F  ,                H  , J  , K  , L  , T  ,NGAM,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-      M  ,LCTL, Z  , X  , C  , V  , __        __ , N  , M  , G  , B  , __ , __ ,
+      M  ,LCTL, Z  , X  , C  , V  , __        __ , N  , M  , G  , B  , __ ,AGAM,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                        LGUI,LALT, SPC,          __ , __ , __
   //                  `----+----+----'        `----+----+----'
@@ -164,16 +187,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Alternative gaming layer with nav cluster
     [_NAV_GAME] = KC_KEYMAP(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-     GAME, F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 , F10, F11,
+      __ , __ , __ , __ , __ , __ ,              , __ , __ , __ , __ , __ , __ ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-      __ , __ , __ , __ , __ , __ ,               HOME,PGDN,PGUP, END, __ , F12,
+      __ , __ , __ , __ , __ , __ ,                __ , INS,PGUP,PGUP, __ , __ ,
   //|----|----+----+----+----+----+              |----+----+----+----+----+----|
-      __ ,LGUI,LALT,LCTL,LSFT, __ ,               LEFT,DOWN, UP ,RGHT, __ , __ ,
+      __ , __ , __ , __ , __ , __ ,                __ , DEL,PGDN,PGDN, __ ,GAME,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-      __ , __ , __ , __ , __ , __ , __        __ ,CLFT,CDWN, CUP,CRGT, __ , __ ,
+      __ , __ , __ , __ , __ , __ , __        __ , __ , __ , __ , __ , __ , __ ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                         __ , __ , __ ,          __ , __ , __
   //                  `----+----+----'        `----+----+----'
+  ),
+
+  // Alternative gaming layer with arrow keys
+    [_ARROW_GAME] = KC_KEYMAP(
+  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
+      __ , __ , __ , __ , __ , __ ,              , __ , __ , __ , __ , __ , __ ,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+      __ , __ , __ , __ , __ , __ ,                __ , __ , UP , __ , __ , __ ,
+  //|----|----+----+----+----+----+              |----+----+----+----+----+----|
+      __ , __ , __ , __ , __ , __ ,                __ ,LEFT,DOWN,RGHT, __ ,NGAM,
+  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
+      __ , __ , __ , __ , __ , __ , __        __ , __ , __ , __ , __ , __ ,GAME,
+  //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
+                        __ , __ , __ ,          __ , __ , __
+  //                  `----+----+----'        `----+----+----'
+  ),
 
 };
 
