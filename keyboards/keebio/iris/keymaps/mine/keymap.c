@@ -58,8 +58,10 @@ extern keymap_config_t keymap_config;
 #define KC_APOS  KC_BSLS         // '
 #define QUOTE    S(KC_2)         // "
 #define HASH     S(KC_3)         // #
+#define FWDSLSH  S(KC_7)         // /
 #define KC_TIMS  S(KC_BSLS)      // *
 #define PLUS     KC_MINS         // +
+#define PLUSMIN  ALT_GR(KC_MINS) // ±
 #define QUESTIN  S(KC_MINS)      // ?
 #define KC_DOLA  ALT_GR(KC_4)    // $
 #define KC_ALPH  ALT_GR(KC_2)    // @
@@ -118,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Main layer with letters, number row and mods
     [_MAIN] = LAYOUT(
   //,-------+-------+-------+-------+-------+-------.                    ,-------+-------+-------+-------+-------+-------.
-     KC_GRAV, KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                      KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,
+      KC_GRV, KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                      KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
      KC_TNAV, KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                      KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  , KC_AA ,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
@@ -132,21 +134,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // Symbol layer based on https://www.youtube.com/watch?v=yiwUjLaebuw
   // Has number row 1u above home row, and symbols on remaining rows
-  // Upper row contains less used symbols (???)
+  // Upper row contains ALT_GR of number row, to ease transition from full keyboard, and some added symbols
     [_SYMBOL] = LAYOUT(
   //,-------+-------+-------+-------+-------+-------.                    ,-------+-------+-------+-------+-------+-------.
-      KC_F12, KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                      KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
+  //|       |   ±   |   @   |   ¨   |   $   |       |                    |   /   |   {   |   [   |   ]   |   }   |   `   |
+       ___  ,PLUSMIN,KC_ALPH, KC_UML,KC_DOLA,  ___  ,                     FWDSLSH,KC_CBRL,KC_SBRL,KC_SBRR,KC_CBRR,KC_GRAV,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
-  //|   +   |       |       |       |       |       |                    |       |       |       |       |       |   \`  |
-       PLUS , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                      KC_6  , KC_7  , KC_8  , KC_9  , KC_0  , KC_EQL,
+  //|   ^   |       |       |       |       |       |                    |       |       |       |       |       |   \`  |
+      KC_HAT, KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                      KC_6  , KC_7  , KC_8  , KC_9  , KC_0  , KC_EQL,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
-  //|   <   |   $   |   '   |   (   |   )   |   @   |                    |   |   |   ?   |   =   |   "   |   *   |   >   |
-     KC_ABRL,KC_DOLA,KC_APOS,KC_RBRL,KC_RBRR,KC_ALPH,                       PIPE ,QUESTIN, EQUAL , QUOTE ,KC_APOS,KC_ABRR,
+  //|   <   |   +   |   '   |   (   |   )   |   @   |                    |   |   |   ?   |   =   |   "   |   *   |   >   |
+     KC_ABRL,  PLUS ,KC_APOS,KC_RBRL,KC_RBRR,KC_ALPH,                       PIPE ,QUESTIN, EQUAL , QUOTE ,KC_APOS,KC_ABRR,
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
-  //|       |   !   |   #   |   {   |   }   |   ~   |       |    |       |   &   |   [   |   ]   |   %   |   ^   |       |
-       ___  ,KC_EXCL,  HASH ,KC_CBRL,KC_CBRR, TILDE ,  ___  ,       ___  ,KC_AMPR,KC_SBRL,KC_CBRL,PERCENT, KC_HAT,  ___  ,
+  //|       |   !   |   #   |   {   |   }   |   ~   |       |    |       |   &   |   [   |   ]   |   %   |   $   |       |
+       ___  ,KC_EXCL,  HASH ,KC_CBRL,KC_CBRR, TILDE ,  ___  ,       ___  ,KC_AMPR,KC_SBRL,KC_CBRL,PERCENT,KC_DOLA,  ___  ,
   //`-------+-------+-------+-----+-+-------+-------+-------/    \-------+-------+-------+-------+-------+-------+-------'
-                                       __ ,KC_MEDI,  ___  ,           ___   ,  ___  ,  ___
+                                     ___  ,KC_MEDI,  ___  ,           ___   ,  ___  ,  ___
   //                              `-------+-------+-------'        `--------+-------+-------'
   ),
 
