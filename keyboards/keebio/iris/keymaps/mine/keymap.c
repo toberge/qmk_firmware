@@ -36,8 +36,10 @@ extern keymap_config_t keymap_config;
 // Text editor shortcuts for NAV
 #define KC_AL   LALT(KC_LEFT)
 #define KC_AR   LALT(KC_RGHT)
-#define KC_CL   LCTL(KC_LEFT)
-#define KC_CR   LCTL(KC_RGHT)
+#define KC_CLFT LCTL(KC_LEFT)
+#define KC_CDWN LCTL(KC_DOWN)
+#define KC_CUP  LCTL(KC_UP)
+#define KC_CRGT LCTL(KC_RGHT)
 #define KC_A_BS LALT(KC_BSPC)
 #define KC_C_BS LALT(KC_BSPC)
 
@@ -59,6 +61,8 @@ extern keymap_config_t keymap_config;
 #define KC_TIMS  S(KC_BSLS)      // *
 #define KC_PLUS  KC_MINS         // +
 #define KC_QUES  S(KC_MINS)      // ?
+#define KC_DOLA  ALT_GR(KC_4)    // $
+#define KC_ALPH  ALT_GR(KC_2)    // @
 #define KC_PERC  S(KC_5)         // %
 #define KC_EXCL  S(KC_1)         // !
 #define KC_HAT   S(KC_RBRC)      // ^
@@ -87,6 +91,14 @@ extern keymap_config_t keymap_config;
 #define KC_RBRR S(KC_9)      // )
 #define KC_ABRL KC_NUBS      // <
 #define KC_ABRR S(KC_NUBS)   // >
+
+// Keyboard setting aliases
+#define KC_BLU BL_INC
+#define KC_BLD BL_DEC
+#define KC_BLT BL_TOGG
+#define KC_BLB BL_BRTG
+#define KC_BLC BL_STEP
+
 
 enum {
     MAIN = 0,
@@ -119,17 +131,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   // Symbol layer based on https://www.youtube.com/watch?v=yiwUjLaebuw
-  // Add angled brackets where - and _ are now, since those are on main layer?
-  // --> whoops, you forgot ? as well...
+  // Has number row 1u above home row, and symbols on remaining rows
+  // Upper row contains less used symbols (???)
     [_SYMBOL] = KC_KEYMAP(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
       F12, F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 , F10, F11,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-  //| :  |    |    |    |    |    |              |    |    |    |    |    | ;  |
-     COLO, 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,SEMI,
+  //| +  |    |    |    |    |    |              |    |    |    |    |    | \` |
+     PLUS, 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  , EQL,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-  //| <  | $  | +  | (  | )  | @  |              | |  | ?  | =  | _  | *  | >  |
-     ABRL, A  , S  , D  , F  , G  ,               PIPE,QUES, EQU,UNDR,APOS,ABRR,
+  //| <  | $  | '  | (  | )  | @  |              | |  | ?  | =  | "  | *  | >  |
+     ABRL,DOLA,APOS,RBRL,RBRR,ALPH,               PIPE,QUES, EQU,QUOT,APOS,ABRR,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
   //|    | !  | #  | {  | }  | ~  |    |    |    | &  | [  | ]  | %  | ^  |    |
       __ ,EXCL,HASH,CBRL,CBRR,TILD, __ ,      __ ,AMPR,SBRL,CBRL,PERC, HAT, __ ,
@@ -143,11 +155,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      GAME, F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 , F10, F11,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-      __ , __ , __ , __ , __ , __ ,               HOME,PGDN,PGUP, END, __ , F12,
+      __ , F1 , F2 , F3 , F4 , F5 ,                __ ,HOME,PGDN,PGUP, END, F12,
   //|----|----+----+----+----+----+              |----+----+----+----+----+----|
-      __ ,LGUI,LALT,LCTL,LSFT, __ ,               LEFT,DOWN, UP ,RGHT, __ , __ ,
+      __ ,LGUI,LALT,LCTL,LSFT, __ ,                __ ,LEFT,DOWN, UP ,RGHT, __ ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-      __ , __ , __ , __ , __ , __ , __        __ ,CLFT,CDWN, CUP,CRGT, __ , __ ,
+      __ , __ , __ , __ , __ , __ , __        __ , __ ,CLFT,CDWN, CUP,CRGT, __ ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                         __ , __ , __ ,          __ ,MEDI, __
   //                  `----+----+----'        `----+----+----'
@@ -159,11 +171,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
       __ , F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 , F10, F11,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-      __ , __ , __ , __ , __ ,BRIU,               VOLU, __ ,MSTP, __ , __ , F12,
+      __ , BLC, BLU, __ , __ ,BRIU,               VOLU, __ ,MSTP, __ , __ , F12,
   //|----|----+----+----+----+----+              |----+----+----+----+----+----|
-    RESET, __ , __ , __ , __ ,BRID,               VOLD,MPRV,MPLY,MNXT, __ , __ ,
+    RESET, BLT, BLD, __ ,CALC,BRID,               VOLD,MPRV,MPLY,MNXT, __ ,GAME,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-      __ , __ , __ , __ , __ , __ , __        __ , __ , __ , __ , __ , __ , __ ,
+      __ , BLB, __ , __ , __ , __ , __        __ , __ , __ , __ , __ , __ , __ ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                         __ , __ , __ ,          __ , __ , __
   //                  `----+----+----'        `----+----+----'
@@ -215,6 +227,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 };
+
+// Rotary encoder(s)
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        // First encoder is volume control,
+        // mute on press.
+        if (clockwise) {
+            tap_code(KC_VOLU);
+        } else {
+            tap_code(KC_VOLD);
+        }
+    }
+    return true;
+}
 
 // Layer colors
 const rgblight_segment_t PROGMEM my_main_layer[] = RGBLIGHT_LAYER_SEGMENTS(
