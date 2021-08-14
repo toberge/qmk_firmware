@@ -243,9 +243,10 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 #define GOLD 36, 255, 200
-#define BLUE 170, 255, 200
+#define CYAN 128, 255, 180
 #define RED 0, 255, 200
 #define GREEN 85, 255, 200
+#define PURPLE 191, 255, 200
 #define PINK 234, 128, 200
 
 // Layer colors
@@ -253,16 +254,16 @@ const rgblight_segment_t PROGMEM my_main_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 12, GOLD}
 );
 const rgblight_segment_t PROGMEM my_symbol_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 12, BLUE}
+    {0, 12, PINK}
 );
 const rgblight_segment_t PROGMEM my_nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 12, RED}
+    {0, 12, CYAN}
 );
 const rgblight_segment_t PROGMEM my_media_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 12, GREEN}
+    {0, 12, PURPLE}
 );
 const rgblight_segment_t PROGMEM my_gaming_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 12, PINK}
+    {0, 12, PURPLE}
 );
 
 // Layer precedence, later = higher
@@ -282,6 +283,7 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(_MAIN, layer_state_cmp(state, _MAIN));
+    rgblight_set_layer_state(_GAME, layer_state_cmp(state, _GAME));
     return state;
 }
 
