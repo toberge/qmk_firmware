@@ -95,11 +95,8 @@ extern keymap_config_t keymap_config;
 #define KC_ABRR S(KC_NUBS)   // >
 
 // Keyboard setting aliases
-#define KC_BLU BL_INC
-#define KC_BLD BL_DEC
-#define KC_BLT BL_TOGG
-#define KC_BLB BL_BRTG
-#define KC_BLC BL_STEP
+#define BREATHE RGB_MODE_BREATHE
+#define SWIRL   RGB_MODE_SWIRL
 
 
 enum {
@@ -122,13 +119,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-------+-------+-------+-------+-------+-------.                    ,-------+-------+-------+-------+-------+-------.
       KC_GRV, KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                      KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
-     KC_TNAV, KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                      KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  , KC_AA ,
+      KC_TAB, KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                      KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  , KC_AA ,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
      KC_CESC, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                      KC_H  , KC_J  , KC_K  , KC_L  , KC_OE , KC_AE ,
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
-     KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,KC_MUTE,     KC_ENT , KC_K  , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
+     KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,KC_MUTE,     KC_BSPC, KC_N  , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
   //`-------+-------+-------+-----+-+-------+-------+-------/    \-------+-------+-------+-------+-------+-------+-------'
-                                    KC_LGUI,KC_NAV,KC_CTBS,          KC_SPC , KC_SYM,KC_LALT
+                                    KC_LGUI,KC_NAV, KC_ENT,          KC_SPC , KC_SYM,KC_LALT
   //                              `-------+-------+-------'        `--------+-------+-------'
   ),
 
@@ -174,11 +171,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-------+-------+-------+-------+-------+-------.                    ,-------+-------+-------+-------+-------+-------.
        ___  , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                      KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
-       ___  , KC_BLC, KC_BLU,  ___  ,  ___  ,KC_BRIU,                     KC_VOLU,  ___  ,KC_MSTP,  ___  ,  ___  , KC_F12,
+       ___  ,BREATHE,RGB_VAI,  ___  ,  ___  ,KC_BRIU,                     KC_VOLU,  ___  ,KC_MSTP,  ___  ,  ___  , KC_F12,
   //|-------|-------+-------+-------+-------+-------+                    |-------+-------+-------+-------+-------+-------|
-      RESET , KC_BLT, KC_BLD,  ___  ,KC_CALC,KC_BRID,                     KC_VOLD,KC_MPRV,KC_MPLY,KC_MNXT,  ___  ,KC_GAME,
+      RESET ,RGB_TOG,RGB_VAD,  ___  ,KC_CALC,KC_BRID,                     KC_VOLD,KC_MPRV,KC_MPLY,KC_MNXT,  ___  ,KC_GAME,
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
-       ___  , KC_BLB,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,       ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,
+       ___  , SWIRL ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,       ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,
   //`-------+-------+-------+-----+-+-------+-------+-------/    \-------+-------+-------+-------+-------+-------+-------'
                                      ___  ,  ___  ,  ___  ,           ___   ,  ___  ,  ___
   //                              `-------+-------+-------'        `--------+-------+-------'
@@ -245,26 +242,36 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return true;
 }
 
+#define GOLD 36, 255, 200
+#define BLUE 170, 255, 200
+#define RED 0, 255, 200
+#define GREEN 85, 255, 200
+#define PINK 234, 128, 200
+
 // Layer colors
 const rgblight_segment_t PROGMEM my_main_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_GOLD}
+    {0, 12, GOLD}
 );
 const rgblight_segment_t PROGMEM my_symbol_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_BLUE}
+    {0, 12, BLUE}
 );
 const rgblight_segment_t PROGMEM my_nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_RED}
+    {0, 12, RED}
+);
+const rgblight_segment_t PROGMEM my_media_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 12, GREEN}
 );
 const rgblight_segment_t PROGMEM my_gaming_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_PINK}
+    {0, 12, PINK}
 );
 
 // Layer precedence, later = higher
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     // possible caps lock if you realllly want
     my_main_layer,
-    my_nav_layer,
     my_symbol_layer,
+    my_nav_layer,
+    my_media_layer,
     my_gaming_layer
 );
 
@@ -281,7 +288,10 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(_SYMBOL, layer_state_cmp(state, _SYMBOL));
     rgblight_set_layer_state(_NAV, layer_state_cmp(state, _NAV));
+    rgblight_set_layer_state(_MEDIA, layer_state_cmp(state, _MEDIA));
     rgblight_set_layer_state(_GAME, layer_state_cmp(state, _GAME));
+    rgblight_set_layer_state(_GAME, layer_state_cmp(state, _NAV_GAME));
+    rgblight_set_layer_state(_GAME, layer_state_cmp(state, _ARROW_GAME));
     return state;
 }
 
