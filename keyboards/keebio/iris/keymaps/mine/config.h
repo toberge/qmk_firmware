@@ -7,7 +7,7 @@
 #define RGBLIGHT_LAYERS
 
 // Reduce delay on keys that do different things when held vs tapped
-#define TAPPING_TERM 100
+#define TAPPING_TERM 120
 
 //
 // Reduce firmware size

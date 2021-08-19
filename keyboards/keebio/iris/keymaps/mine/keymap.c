@@ -84,6 +84,7 @@ extern keymap_config_t keymap_config;
 #define KC_OE KC_SCLN // Ø
 #define KC_AE KC_QUOT // Æ
 
+
 // Brackets!
 #define KC_SBRL ALT_GR(KC_8) // [
 #define KC_SBRR ALT_GR(KC_9) // ]
@@ -125,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
      KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,KC_MUTE,     KC_BSPC, KC_N  , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
   //`-------+-------+-------+-----+-+-------+-------+-------/    \-------+-------+-------+-------+-------+-------+-------'
-                                    KC_LGUI,KC_NAV, KC_ENT,          KC_SPC , KC_SYM,KC_LALT
+                                   KC_LGUI, KC_NAV, KC_ENT,          KC_SPC , KC_SYM,KC_LALT
   //                              `-------+-------+-------'        `--------+-------+-------'
   ),
 
@@ -134,17 +135,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Upper row contains ALT_GR of number row, to ease transition from full keyboard, and some added symbols
     [_SYMBOL] = LAYOUT(
   //,-------+-------+-------+-------+-------+-------.                    ,-------+-------+-------+-------+-------+-------.
-  //|       |   ±   |   @   |   ¨   |   $   |       |                    |   /   |   {   |   [   |   ]   |   }   |   `   |
-       ___  ,PLUSMIN,KC_ALPH, KC_UML,KC_DOLA,  ___  ,                     FWDSLSH,KC_CBRL,KC_SBRL,KC_SBRR,KC_CBRR,KC_GRAV,
+  //|       |   ±   |   @   |   ¨   |   $   |   ~   |                    |   `   |   {   |   [   |   ]   |   }   |       |
+       ___  ,PLUSMIN,KC_ALPH, KC_UML,KC_DOLA, TILDE ,                     KC_GRAV,KC_CBRL,KC_SBRL,KC_SBRR,KC_CBRR,  ___  ,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
   //|   ^   |       |       |       |       |       |                    |       |       |       |       |       |   \`  |
       KC_HAT, KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                      KC_6  , KC_7  , KC_8  , KC_9  , KC_0  , KC_EQL,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
-  //|   <   |   +   |   '   |   (   |   )   |   @   |                    |   |   |   ?   |   =   |   "   |   *   |   >   |
-     KC_ABRL,  PLUS ,KC_APOS,KC_RBRL,KC_RBRR,KC_ALPH,                       PIPE ,QUESTIN, EQUAL , QUOTE ,KC_APOS,KC_ABRR,
+  //|   <   |   +   |   '   |   (   |   )   |   @   |                    |   |   |   /   |   =   |   "   |   *   |   >   |
+     KC_ABRL,  PLUS ,KC_APOS,KC_RBRL,KC_RBRR,KC_ALPH,                       PIPE ,FWDSLSH, EQUAL , QUOTE ,KC_APOS,KC_ABRR,
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
-  //|       |   !   |   #   |   {   |   }   |   ~   |       |    |       |   &   |   [   |   ]   |   %   |   $   |       |
-       ___  ,KC_EXCL,  HASH ,KC_CBRL,KC_CBRR, TILDE ,  ___  ,       ___  ,KC_AMPR,KC_SBRL,KC_CBRL,PERCENT,KC_DOLA,  ___  ,
+  //|       |   !   |   #   |   {   |   }   |   ?   |       |    |       |   &   |   [   |   ]   |   %   |   $   |       |
+       ___  ,KC_EXCL,  HASH ,KC_CBRL,KC_CBRR,QUESTIN,  ___  ,       ___  ,KC_AMPR,KC_SBRL,KC_SBRR,PERCENT,KC_DOLA,  ___  ,
   //`-------+-------+-------+-----+-+-------+-------+-------/    \-------+-------+-------+-------+-------+-------+-------'
                                      ___  ,KC_MEDI,  ___  ,           ___   ,  ___  ,  ___
   //                              `-------+-------+-------'        `--------+-------+-------'
@@ -153,13 +154,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Navigation layer with arrow keys, nav cluster, F keys and homerow mods
     [_NAV] = LAYOUT(
   //,-------+-------+-------+-------+-------+-------.                    ,-------+-------+-------+-------+-------+-------.
-     KC_GAME, KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                      KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
+      RESET , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                      KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
        ___  , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                       ___  ,KC_HOME,KC_PGDN,KC_PGUP, KC_END, KC_F12,
   //|-------|-------+-------+-------+-------+-------+                    |-------+-------+-------+-------+-------+-------|
-       ___  ,KC_LGUI,KC_LALT,KC_LCTL,KC_LSFT,  ___  ,                       ___  ,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,  ___  ,
+     KC_GAME,KC_LGUI,KC_LALT,KC_LCTL,KC_LSFT,  ___  ,                       ___  ,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,  ___  ,
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
-       ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,       ___  ,  ___  ,KC_CLFT,KC_CDWN, KC_CUP,KC_CRGT,  ___  ,
+       ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,      KC_DEL,KC_PSCR,KC_CLFT,KC_CDWN, KC_CUP,KC_CRGT,  ___  ,
   //`-------+-------+-------+-----+-+-------+-------+-------/    \-------+-------+-------+-------+-------+-------+-------'
                                      ___  ,  ___  ,  ___  ,           ___   ,KC_MEDI,  ___
   //                              `-------+-------+-------'        `--------+-------+-------'
@@ -169,11 +170,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Get here by holding both NAV and SYM
     [_MEDIA] = LAYOUT(
   //,-------+-------+-------+-------+-------+-------.                    ,-------+-------+-------+-------+-------+-------.
-       ___  , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                      KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
+      RESET , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                      KC_F6 , KC_F7 , KC_F8 , KC_F9 , KC_F10, KC_F11,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
        ___  ,BREATHE,RGB_VAI,  ___  ,  ___  ,KC_BRIU,                     KC_VOLU,  ___  ,KC_MSTP,  ___  ,  ___  , KC_F12,
   //|-------|-------+-------+-------+-------+-------+                    |-------+-------+-------+-------+-------+-------|
-      RESET ,RGB_TOG,RGB_VAD,  ___  ,KC_CALC,KC_BRID,                     KC_VOLD,KC_MPRV,KC_MPLY,KC_MNXT,  ___  ,KC_GAME,
+     KC_GAME,RGB_TOG,RGB_VAD,  ___  ,KC_CALC,KC_BRID,                     KC_VOLD,KC_MPRV,KC_MPLY,KC_MNXT,  ___  ,KC_GAME,
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
        ___  , SWIRL ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,       ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,  ___  ,
   //`-------+-------+-------+-----+-+-------+-------+-------/    \-------+-------+-------+-------+-------+-------+-------'
@@ -192,7 +193,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
       KC_M  ,KC_LCTL, KC_Z  , KC_X  , KC_C  , KC_V  ,  ___  ,       ___  , KC_N  , KC_M  , KC_G  , KC_B  ,  ___  ,KC_AGAM,
   //`-------+-------+-------+-----+-+-------+-------+-------/    \-------+-------+-------+-------+-------+-------+-------'
-                                   KC_LGUI,KC_LALT, KC_SPC,           ___   ,  ___  ,  ___
+                                   KC_LGUI,KC_LALT, KC_SPC,         KC_ENT  ,  ___  ,  ___
   //                              `-------+-------+-------'        `--------+-------+-------'
   ),
 
