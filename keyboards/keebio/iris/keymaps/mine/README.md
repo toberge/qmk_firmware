@@ -5,6 +5,8 @@ Tailored for Norwegian mappings, might look unfamiliar.
 
 ## Main layer
 
+NAV and SYM both act as Enter when tapped.
+
 ```
 
 ,----+----+----+----+----+----.              ,----+----+----+----+----+----.
@@ -16,7 +18,7 @@ Tailored for Norwegian mappings, might look unfamiliar.
 |----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
 |SFLK| Z  | X  | C  | V  | B  |MUTE|    |BSPC| K  | M  | ,; | .: | -_ |RSFT|
 `----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                  |LGUI| NAV| ENT /      \ SPC | SYM|LALT|
+                  |LGUI| NAV| SPC /      \ SPC | SYM|LALT|
                   `----+----+----'        `----+----+----'
 ```
 

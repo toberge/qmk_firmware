@@ -25,8 +25,8 @@ extern keymap_config_t keymap_config;
 #define __   KC_TRNS
 #define ___  KC_TRNS
 #define KC_MAIN TO(_MAIN)
-#define KC_SYM  MO(_SYMBOL)
-#define KC_NAV  MO(_NAV)
+#define KC_SYM  LT(_SYMBOL, KC_ENT)
+#define KC_NAV  LT(_NAV, KC_ENT)
 #define KC_MEDI MO(_MEDIA)
 #define KC_TNAV LT(_NAV, KC_TAB)
 #define KC_GAME TO(_GAME)
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
      KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,KC_MUTE,     KC_BSPC, KC_N  , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
   //`-------+-------+-------+-----+-+-------+-------+-------/    \-------+-------+-------+-------+-------+-------+-------'
-                                   KC_LGUI, KC_NAV, KC_ENT,          KC_SPC , KC_SYM,KC_LALT
+                                   KC_LGUI, KC_NAV, KC_SPC,          KC_SPC , KC_SYM,KC_LALT
   //                              `-------+-------+-------'        `--------+-------+-------'
   ),
 
