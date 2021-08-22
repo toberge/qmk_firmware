@@ -9,6 +9,9 @@
 // Reduce delay on keys that do different things when held vs tapped
 #define TAPPING_TERM 120
 
+// One combo
+#define COMBO_COUNT 1
+
 //
 // Reduce firmware size
 // See https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/

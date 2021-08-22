@@ -142,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_HAT, KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                      KC_6  , KC_7  , KC_8  , KC_9  , KC_0  , KC_EQL,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
   //|   <   |   +   |   '   |   (   |   )   |   @   |                    |   |   |   /   |   =   |   "   |   *   |   >   |
-     KC_ABRL,  PLUS ,KC_APOS,KC_RBRL,KC_RBRR,KC_ALPH,                       PIPE ,FWDSLSH, EQUAL , QUOTE ,KC_APOS,KC_ABRR,
+     KC_ABRL,  PLUS ,KC_APOS,KC_RBRL,KC_RBRR,KC_ALPH,                       PIPE ,FWDSLSH, EQUAL , QUOTE ,KC_TIMS,KC_ABRR,
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
   //|       |   !   |   #   |   {   |   }   |   ?   |       |    |       |   &   |   [   |   ]   |   %   |   $   |       |
        ___  ,KC_EXCL,  HASH ,KC_CBRL,KC_CBRR,QUESTIN,  ___  ,       ___  ,KC_AMPR,KC_SBRL,KC_SBRR,PERCENT,KC_DOLA,  ___  ,
@@ -242,6 +242,10 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     }
     return true;
 }
+
+// Combos
+const uint16_t PROGMEM f11_combo[] = {KC_9, KC_0, COMBO_END};
+combo_t key_combos[COMBO_COUNT] = {COMBO(f11_combo, KC_F11)};
 
 #define GOLD 36, 255, 200
 #define CYAN 128, 255, 180
