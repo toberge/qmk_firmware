@@ -2,6 +2,7 @@
 BACKLIGHT_ENABLE = no
 
 COMBO_ENABLE = yes
+NKRO_ENABLE = yes
 
 # For smaller firmware size!
 CONSOLE_ENABLE = no
