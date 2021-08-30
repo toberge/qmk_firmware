@@ -58,6 +58,7 @@ extern keymap_config_t keymap_config;
 #define KC_APOS  KC_BSLS         // '
 #define QUOTE    S(KC_2)         // "
 #define HASH     S(KC_3)         // #
+#define AMPER    S(KC_6)         // &
 #define FWDSLSH  S(KC_7)         // /
 #define KC_TIMS  S(KC_BSLS)      // *
 #define PLUS     KC_MINS         // +
@@ -141,8 +142,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|   ^   |       |       |       |       |       |                    |       |       |       |       |       |   \`  |
       KC_HAT, KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                      KC_6  , KC_7  , KC_8  , KC_9  , KC_0  , KC_EQL,
   //|-------+-------+-------+-------+-------+-------|                    |-------+-------+-------+-------+-------+-------|
-  //|   <   |   +   |   '   |   (   |   )   |   @   |                    |   |   |   /   |   =   |   "   |   *   |   >   |
-     KC_ABRL,  PLUS ,KC_APOS,KC_RBRL,KC_RBRR,KC_ALPH,                       PIPE ,FWDSLSH, EQUAL , QUOTE ,KC_TIMS,KC_ABRR,
+  //|   <   |   +   |   "   |   (   |   )   |   &   |                    |   |   |   /   |   =   |   '   |   *   |   >   |
+     KC_ABRL,  PLUS , QUOTE ,KC_RBRL,KC_RBRR, AMPER ,                       PIPE ,FWDSLSH, EQUAL ,KC_APOS,KC_TIMS,KC_ABRR,
   //|-------+-------+-------+-------+-------+-------+-------.    ,-------|-------+-------+-------+-------+-------+-------|
   //|       |   !   |   #   |   {   |   }   |   ?   |       |    |       |   &   |   [   |   ]   |   %   |   $   |       |
        ___  ,KC_EXCL,  HASH ,KC_CBRL,KC_CBRR,QUESTIN,  ___  ,       ___  ,KC_AMPR,KC_SBRL,KC_SBRR,PERCENT,KC_DOLA,  ___  ,
